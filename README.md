@@ -19,12 +19,11 @@ docker run --name nagios -td -v /opt/nagios/etc/:/usr/local/nagios/etc/ -v /opt/
 
 where:
 
-/opt/nagios/etc - configuration files with plugins
-/opt/nagios/logs - log and graph files.
-Please create /opt/nagios/logs/rrd for graph files and /opt/nagios/logs/archives for archives
+* /opt/nagios/etc - Nagios configuration files with all your plugins;
+* /opt/nagios/logs - Nagios log and RRD-graph files;
 
-## Known issues:
+Please create /opt/nagios/logs/rrd for graph files and /opt/nagios/logs/archives for archives.
 
-    Not checked email notification
-
-
+## Known issues
+ 
+  * Not checked email notification
