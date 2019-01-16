@@ -3,15 +3,15 @@ FROM alpine:3.7
 MAINTAINER Andrii Zhovtiak <andy@urlog.net>
 
 ENV NAGIOS_HOME /usr/local/nagios
-ENV NAGIOS_BRANCH nagios-4.3.4
+ENV NAGIOS_BRANCH nagios-4.4.3
 ENV NAGIOS_PLUGINS nagios-plugins-2.2.1
 ENV NAGIOS_NRPE nrpe-3.2.1
 ENV NAGIOS_GRAPH 1.5.2
 
 RUN apk update && apk upgrade
 RUN apk add bc tzdata bash sudo supervisor shadow unzip bind-tools ca-certificates nginx fcgiwrap wget iputils perl perl-net-snmp net-snmp-libs net-snmp-perl net-snmp-tools net-snmp
-RUN apk add php7 php7-curl php7-fpm php7-gd build-base linux-headers perl-dev perl-module-build openssl openssl-dev perl-libwww perl-net-ssleay 
-RUN apk add gd gd-dev fontconfig-dev jpeg-dev libx11-dev perl perl-rrd perl-cgi perl-gd perl-time-hires rrdtool
+RUN apk add php7 php7-curl php7-fpm php7-gd build-base linux-headers perl-dev perl-module-build openssl openssl-dev perl-libwww perl-net-ssleay
+RUN apk add gd gd-dev fontconfig-dev jpeg-dev libx11-dev rrdtool perl perl-rrd perl-cgi perl-gd perl-time-hires
  
 RUN set -x ; \
     addgroup -g 82 -S www-data ; \
@@ -91,7 +91,7 @@ RUN cp /tmp/nagiosgraph-${NAGIOS_GRAPH}/share/nagiosgraph.ssi ${NAGIOS_HOME}/sha
 RUN rm -rf /tmp/nagiosgraph-${NAGIOS_GRAPH}* 
 
 RUN cd /tmp \ 
-    && wget http://www.be-root.com/downloads/nagios/vautour/vautour_style.zip \
+    && wget https://github.com/ynlamy/vautour-style/releases/download/v1.7/vautour_style.zip \
     && /usr/bin/unzip -o vautour_style.zip -d ${NAGIOS_HOME}/share/ \
     && rm vautour_style.zip
 
