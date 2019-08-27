@@ -1,10 +1,10 @@
 # DNagios
 
-Based on Alpine Linux version 3.7
+Based on Alpine Linux version 3.9
 
 WEB access: admin / nagiosadmin
 
-  *  Nagios 4.4.3 (without any default config files!)
+  *  Nagios 4.4.5 (without any default config files!)
   *  Nagios Plugins ver. 2.2.1
   *  NRPE ver. 3.2.1
   *  NagiosGraph ver. 1.5.2
