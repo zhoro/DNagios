@@ -1,12 +1,12 @@
 # DNagios
 
-Based on Alpine Linux version 3.9
+Based on Alpine Linux version 3.11.6
 
 WEB access: admin / nagiosadmin
 
-  *  Nagios 4.4.5 (without any default config files!)
+  *  Nagios 4.4.6 (without any default config files!)
   *  Nagios Plugins ver. 2.2.1
-  *  NRPE ver. 3.2.1
+  *  NRPE ver. 4.0.3
   *  NagiosGraph ver. 1.5.2
   *  Hosted with nginx web-server (without Apache)
   *  Ready for PERL nagios plugins
@@ -21,6 +21,10 @@ where:
 
 * /opt/nagios/etc - Nagios configuration files with all your plugins;
 * /opt/nagios/logs - Nagios log and RRD-graph files;
+ 
+Access:
+
+* /etc/htpasswd.users - user access file in container
 
 Please create /opt/nagios/logs/rrd for graph files and /opt/nagios/logs/archives for archives.
 

@@ -1,11 +1,11 @@
-FROM alpine:3.9
+FROM alpine:3.11.6
 
 MAINTAINER Andrii Zhovtiak <andy@urlog.net>
 
 ENV NAGIOS_HOME /usr/local/nagios
-ENV NAGIOS_BRANCH nagios-4.4.5
+ENV NAGIOS_BRANCH nagios-4.4.6
 ENV NAGIOS_PLUGINS nagios-plugins-2.2.1
-ENV NAGIOS_NRPE nrpe-3.2.1
+ENV NAGIOS_NRPE nrpe-4.0.3
 ENV NAGIOS_GRAPH 1.5.2
 
 RUN apk update && apk upgrade
