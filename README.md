@@ -1,6 +1,6 @@
 # DNagios
 
-Based on Alpine Linux version 3.11.6
+Based on Alpine Linux version 3.13.1
 
 WEB access: admin / nagiosadmin
 

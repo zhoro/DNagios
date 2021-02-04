@@ -1,4 +1,4 @@
-FROM alpine:3.11.6
+FROM alpine:3.13.1
 
 MAINTAINER Andrii Zhovtiak <andy@urlog.net>
 
@@ -72,7 +72,7 @@ RUN cd /tmp \
     && rm -rf /tmp/${NAGIOS_NRPE}*
 
 RUN /usr/bin/cpan App::cpanminus && rm -rf /root/.cpan
-RUN cpanm install inc::latest  Module::Build Nagios::Config; rm -fr root/.cpanm 
+RUN cpanm install inc::latest  Module::Build Nagios::Config Net::SNMP Getopt::Long  Net::IP; rm -fr root/.cpanm 
 
 RUN cd /tmp \
     && wget http://downloads.sourceforge.net/project/nagiosgraph/nagiosgraph/${NAGIOS_GRAPH}/nagiosgraph-${NAGIOS_GRAPH}.tar.gz \
