@@ -5,7 +5,7 @@ Based on Alpine Linux version 3.16
 WEB access: admin / nagiosadmin
 
   *  Nagios 4.4.7 (without any default config files!)
-  *  Nagios Plugins ver. 2.2.1
+  *  Nagios Plugins ver. 2.4.0
   *  NRPE ver. 4.0.3
   *  NagiosGraph ver. 1.5.2
   *  Hosted with nginx web-server (without Apache)
