@@ -1,10 +1,10 @@
 # DNagios
 
-Based on Alpine Linux version 3.13.1
+Based on Alpine Linux version 3.16
 
 WEB access: admin / nagiosadmin
 
-  *  Nagios 4.4.6 (without any default config files!)
+  *  Nagios 4.4.7 (without any default config files!)
   *  Nagios Plugins ver. 2.2.1
   *  NRPE ver. 4.0.3
   *  NagiosGraph ver. 1.5.2
@@ -15,16 +15,16 @@ WEB access: admin / nagiosadmin
 
 ## How to run:
 
-docker run --name nagios -td -v /opt/nagios/etc/:/usr/local/nagios/etc/ -v /opt/nagios/log:/var/log/nagios:rw -p 8080:80 zxandy/nagios:v1.0
+docker run --name nagios -td -v /opt/nagios/etc/:/usr/local/nagios/etc/ -v /opt/nagios/log:/var/log/nagios:rw -p 8080:80 zxandy/nagios:1.7
 
 where:
 
 * /opt/nagios/etc - Nagios configuration files with all your plugins;
 * /opt/nagios/logs - Nagios log and RRD-graph files;
- 
+
 Access:
 
-* /etc/htpasswd.users - user access file in container
+ /etc/htpasswd.users - user access file in container
 
 Please create /opt/nagios/logs/rrd for graph files and /opt/nagios/logs/archives for archives.
 

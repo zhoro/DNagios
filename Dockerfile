@@ -1,20 +1,17 @@
-FROM alpine:3.13.1
-
-MAINTAINER Andrii Zhovtiak <andy@urlog.net>
+FROM alpine:3.16
 
 ENV NAGIOS_HOME /usr/local/nagios
-ENV NAGIOS_BRANCH nagios-4.4.6
+ENV NAGIOS_BRANCH nagios-4.4.7
 ENV NAGIOS_PLUGINS nagios-plugins-2.2.1
 ENV NAGIOS_NRPE nrpe-4.0.3
 ENV NAGIOS_GRAPH 1.5.2
 
 RUN apk update && apk upgrade
 RUN apk add bc tzdata bash sudo supervisor shadow unzip bind-tools ca-certificates nginx fcgiwrap wget iputils perl perl-net-snmp net-snmp-libs net-snmp-perl net-snmp-tools net-snmp
-RUN apk add php7 php7-curl php7-fpm php7-gd build-base linux-headers perl-dev perl-module-build openssl openssl-dev perl-libwww perl-net-ssleay
-RUN apk add gd gd-dev fontconfig-dev 
-RUN apk add jpeg-dev libx11-dev rrdtool
-RUN apk add perl perl-rrd perl-cgi perl-gd perl-time-hires
- 
+RUN apk add php8 php8-curl php8-fpm php8-gd build-base linux-headers perl-dev perl-module-build openssl openssl-dev perl-libwww perl-net-ssleay
+RUN apk add gd gd-dev fontconfig-dev jpeg-dev libx11-dev rrdtool perl perl-rrd perl-cgi perl-gd perl-time-hires curl
+RUN apk add terminus-font ttf-inconsolata ttf-dejavu font-noto font-noto-cjk ttf-font-awesome font-noto-extra font-vollkorn font-misc-cyrillic font-mutt-misc font-screen-cyrillic font-winitzki-cyrillic font-cronyx-cyrillic
+
 RUN set -x ; \
     addgroup -g 82 -S www-data ; \
     adduser -u 82 -D -S -G www-data www-data && exit 0 ; exit 1;
@@ -31,6 +28,7 @@ RUN cd /tmp  \
 	&& tar -zxvf ${NAGIOS_BRANCH}.tar.gz \
 	&& cd /tmp/${NAGIOS_BRANCH}  \
 	&& ./configure \
+		--disable-ssl \
 		--with-nagios-group=nagios \
 		--with-command-group=nagcmd \
 		--with-mail=/usr/sbin/sendmail \
@@ -93,7 +91,7 @@ RUN cp /tmp/nagiosgraph-${NAGIOS_GRAPH}/share/nagiosgraph.ssi ${NAGIOS_HOME}/sha
 RUN rm -rf /tmp/nagiosgraph-${NAGIOS_GRAPH}* 
 
 RUN cd /tmp \ 
-    && wget https://github.com/ynlamy/vautour-style/releases/download/v1.7/vautour_style.zip \
+    && wget https://github.com/ynlamy/vautour-style/releases/download/1.8/vautour_style.zip \
     && /usr/bin/unzip -o vautour_style.zip -d ${NAGIOS_HOME}/share/ \
     && rm vautour_style.zip
 
@@ -113,10 +111,10 @@ COPY hostdown.wav /usr/local/nagios/share/media/
 
 RUN apk del tzdata perl-dev build-base linux-headers pcre-dev perl-module-build gd-dev fontconfig-dev jpeg-dev libx11-dev
 RUN rm -rf /var/cache/apk/*
-RUN rm /etc/nginx/conf.d/default.conf
+RUN rm -rf /etc/nginx/http.d/
 
 COPY htpasswd.users /etc/htpasswd.users
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/http.d/default.conf
 COPY supervisord.conf /etc/supervisord.conf
 
 #Next command for Windows users https://github.com/docker/for-win/issues/39
