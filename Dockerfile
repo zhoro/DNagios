@@ -1,14 +1,14 @@
-FROM alpine:3.16
+FROM alpine:3.17.1
 
 ENV NAGIOS_HOME /usr/local/nagios
-ENV NAGIOS_BRANCH nagios-4.4.7
-ENV NAGIOS_PLUGINS 2.4.0
-ENV NAGIOS_NRPE nrpe-4.0.3
+ENV NAGIOS_BRANCH nagios-4.4.10
+ENV NAGIOS_PLUGINS 2.4.3
+ENV NAGIOS_NRPE nrpe-4.1.0
 ENV NAGIOS_GRAPH 1.5.2
 
 RUN apk update && apk upgrade
 RUN apk add bc tzdata bash sudo supervisor shadow unzip bind-tools ca-certificates nginx fcgiwrap wget iputils perl perl-net-snmp net-snmp-libs net-snmp-perl net-snmp-tools net-snmp
-RUN apk add php8 php8-curl php8-fpm php8-gd build-base linux-headers perl-dev perl-module-build openssl openssl-dev openssl1.1-compat-dev libpq-dev perl-libwww perl-net-ssleay
+RUN apk add php81 php81-curl php81-fpm php81-gd build-base linux-headers perl-dev perl-module-build openssl openssl-dev libpq-dev perl-libwww perl-net-ssleay
 RUN apk add gd gd-dev fontconfig-dev jpeg-dev libx11-dev rrdtool perl perl-rrd perl-cgi perl-gd perl-time-hires curl
 RUN apk add terminus-font ttf-inconsolata ttf-dejavu font-noto font-noto-cjk ttf-font-awesome font-noto-extra font-vollkorn font-misc-cyrillic font-mutt-misc font-screen-cyrillic font-winitzki-cyrillic font-cronyx-cyrillic
 
