@@ -1,14 +1,14 @@
-FROM alpine:3.17.1
+FROM alpine:3.17.3
 
 ENV NAGIOS_HOME /usr/local/nagios
-ENV NAGIOS_BRANCH nagios-4.4.10
-ENV NAGIOS_PLUGINS 2.4.3
+ENV NAGIOS_BRANCH nagios-4.4.11
+ENV NAGIOS_PLUGINS 2.4.4
 ENV NAGIOS_NRPE nrpe-4.1.0
 ENV NAGIOS_GRAPH 1.5.2
 
 RUN apk update && apk upgrade
 RUN apk add bc tzdata bash sudo supervisor shadow unzip bind-tools ca-certificates nginx fcgiwrap wget iputils perl perl-net-snmp net-snmp-libs net-snmp-perl net-snmp-tools net-snmp
-RUN apk add php81 php81-curl php81-fpm php81-gd build-base linux-headers perl-dev perl-module-build openssl openssl-dev libpq-dev perl-libwww perl-net-ssleay
+RUN apk add php81 php81-curl php81-fpm php81-gd build-base linux-headers perl-dev perl-module-build openssl openssl-dev perl-libwww perl-net-ssleay
 RUN apk add gd gd-dev fontconfig-dev jpeg-dev libx11-dev rrdtool perl perl-rrd perl-cgi perl-gd perl-time-hires curl
 RUN apk add terminus-font ttf-inconsolata ttf-dejavu font-noto font-noto-cjk ttf-font-awesome font-noto-extra font-vollkorn font-misc-cyrillic font-mutt-misc font-screen-cyrillic font-winitzki-cyrillic font-cronyx-cyrillic
 
@@ -53,8 +53,8 @@ RUN cd /tmp \
 		--with-ps-format="%s %d %d %d %d %s %n" \
 		--with-ps-varlist="procstat,&procpid,&procppid,&procvsz,&procrss,procprog,&pos" \
 		--with-ps-cols=7 \
-	--enable-perl-modules \
-	--enable-extra-opts \
+		--enable-perl-modules \
+		--enable-extra-opts \
         --with-ping-command='/bin/ping -n -U -w %d -c %d %s' \
         --with-ping6-command='/bin/ping6 -n -U -w %d -c %d %s' \
 	--with-ssh-command=/usr/bin/ssh \
