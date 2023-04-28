@@ -1,12 +1,12 @@
 # DNagios
 
-Based on Alpine Linux version 3.17.1
+Based on Alpine Linux version 3.17.3
 
 WEB access: admin / nagiosadmin
 
-  *  Nagios 4.4.10 (without any default config files!)
-  *  Nagios Plugins ver. 2.4.3
-  *  NRPE ver. 4.0.3
+  *  Nagios 4.4.11 (without any default config files!)
+  *  Nagios Plugins ver. 2.4.4
+  *  NRPE ver. 4.1.0
   *  NagiosGraph ver. 1.5.2
   *  Hosted with nginx web-server (without Apache)
   *  Ready for PERL nagios plugins
@@ -15,7 +15,7 @@ WEB access: admin / nagiosadmin
 
 ## How to run:
 
-docker run --name nagios -td -v /opt/nagios/etc/:/usr/local/nagios/etc/ -v /opt/nagios/log:/var/log/nagios:rw -p 8080:80 zxandy/nagios:1.7
+docker run --name nagios --restart=always -td -v /opt/nagios/spool/:/usr/local/nagios/var/spool/ -v /opt/nagios/etc/:/usr/local/nagios/etc/ -v /opt/nagios/log:/var/log/nagios:rw -p 8080:80 zxandy/nagios:1.x
 
 where:
 
